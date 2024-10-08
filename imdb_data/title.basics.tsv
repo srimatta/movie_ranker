@@ -1,0 +1,11 @@
+tconst	titleType	primaryTitle	originalTitle	isAdult	startYear	endYear	runtimeMinutes	genres
+tt0000001	movie	Movie One	Movie One Original	0	2001	\N	120	Action
+tt0000002	movie	Movie Two	Movie Two Original	0	2002	\N	110	Drama
+tt0000003	movie	Movie Three	Movie Three Original	0	2003	\N	130	Comedy
+tt0000004	movie	Movie Four	Movie Four Original	0	2004	\N	100	Horror
+tt0000005	movie	Movie Five	Movie Five Original	0	2005	\N	90	Thriller
+tt0000006	movie	Movie Six	Movie Six Original	0	2006	\N	115	Sci-Fi
+tt0000007	movie	Movie Seven	Movie Seven Original	0	2007	\N	95	Romance
+tt0000008	movie	Movie Eight	Movie Eight Original	0	2008	\N	140	Adventure
+tt0000009	movie	Movie Nine	Movie Nine Original	0	2009	\N	105	Animation
+tt0000010	movie	Movie Ten	Movie Ten Original	0	2010	\N	125	Fantasy

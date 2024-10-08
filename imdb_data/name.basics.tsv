@@ -1,0 +1,11 @@
+nconst	primaryName	birthYear	deathYear	primaryProfession	knownForTitles
+nm0000001	Person One	1970	\N	director,actor	tt0000008,tt0000003,tt0000002
+nm0000002	Person Two	1980	\N	director,actor	tt0000008,tt0000006,tt0000001
+nm0000003	Person Three	1985	\N	actress,director	tt0000008,tt0000006,tt0000009,tt0000007
+nm0000004	Person Four	1975	\N	producer,director	tt0000008,tt0000005,tt0000002
+nm0000005	Person Five	1982	\N	actor,director	tt0000003,tt0000005,tt0000004,tt0000007
+nm0000006	Person Six	1990	\N	actor,director	tt0000003,tt0000005,tt0000001,tt0000010
+nm0000007	Person Seven	1992	\N	actor,director	tt0000006,tt0000004,tt0000009
+nm0000008	Person Eight	1988	\N	actor,actress	tt0000010,tt0000001
+nm0000009	Person Nine	1995	\N	actor,actress	tt0000010,tt0000002,tt0000007
+nm0000010	Person Ten	1984	\N	actor	tt0000009
