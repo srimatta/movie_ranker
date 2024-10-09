@@ -1,5 +1,13 @@
 # movie_ranker
 
+**Movie Ranker** is a Scala-based application leveraging **Apache Spark** to analyze IMDb datasets.
+
+###  **Key Features**
+
+- **Top Number of Movies Identification**: Utilizes a custom logic that considers both average ratings and the number of votes to determine 
+the top number of movies in the dataset.
+- **Most Credited Persons Analysis**: Identifies and ranks the most influential individuals (actors, directors, writers, etc.) associated with the top movies.
+
 ### Running in command line:
 
 Building movie ranker jar
