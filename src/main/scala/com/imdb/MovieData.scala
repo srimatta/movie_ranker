@@ -10,7 +10,7 @@ object MovieData {
     spark.read
       .option("sep", "\t")
       .schema(MovieDataSchemas.titleBasicsSchema)
-      .csv(dataPath + "title.basics.tsv")
+      .csv(dataPath)
       .filter(col("titleType") === "movie")
       .select("tconst", "primaryTitle")
   }
@@ -19,7 +19,7 @@ object MovieData {
     spark.read
       .option("sep", "\t")
       .schema(MovieDataSchemas.titleRatingsSchema)
-      .csv(dataPath + "title.ratings.tsv")
+      .csv(dataPath)
       .filter(col("numVotes") >= numVotes)
   }
 
@@ -27,7 +27,7 @@ object MovieData {
     spark.read
       .option("sep", "\t")
       .schema(MovieDataSchemas.titlePrincipalsSchema)
-      .csv(dataPath + "title.principals.tsv")
+      .csv(dataPath)
       .filter(col("tconst").isin(top10Tconst: _*))
   }
 
@@ -35,7 +35,7 @@ object MovieData {
     spark.read
       .option("sep", "\t")
       .schema(MovieDataSchemas.nameBasicsSchema)
-      .csv(dataPath + "name.basics.tsv")
+      .csv(dataPath)
       .select("nconst", "primaryName")
   }
 }

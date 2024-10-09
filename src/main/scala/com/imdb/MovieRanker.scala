@@ -1,31 +1,29 @@
-package com.example
+package com.imdb
 
-import com.imdb.{MovieData, Utils}
-import org.apache.spark.sql.{DataFrame, SparkSession}
-import org.apache.spark.sql.functions._
+import org.apache.spark.sql.SparkSession
 
 object MovieRanker {
 
   def main(args: Array[String]): Unit = {
+
+    //Loading Configs
+    val movieRankerConfigs: MovieRankerConfigs = AppConfigs.loadAppConfigs()
+
     // Initialize Spark Session
     val spark = SparkSession.builder()
       .appName("MovieRanker")
-      .master("local[*]")
+      .master(movieRankerConfigs.master)
       .getOrCreate()
 
-    spark.sparkContext.setLogLevel("ERROR")
+    spark.sparkContext.setLogLevel(movieRankerConfigs.logLevel)
     import spark.implicits._
 
-    // Define the path to IMDb data
-    // You can pass this as an argument or set it here
-    val dataPath = if (args.length > 0) args(0) else "/Users/srinivas/Desktop/project_apps/movie_ranker/imdb_data/"
-
     // Read data
-    val titleBasics = MovieData.readTitleBasics(spark, dataPath)
-    val titleRatings = MovieData.readTitleRatings(spark, dataPath)
+    val titleBasics = MovieData.readTitleBasics(spark, movieRankerConfigs.titleBasicsPath)
+    val titleRatings = MovieData.readTitleRatings(spark, movieRankerConfigs.titleRatingsPath)
 
     // Compute top 10 movies
-    val top10Movies = Utils.calculateTopMovies(titleRatings, titleBasics, 10)
+    val top10Movies = Utils.calculateTopMovies(titleRatings, titleBasics, movieRankerConfigs.numberOfTopMovies)
 
     println("Top 10 Movies:")
     top10Movies.show(truncate = false)
@@ -34,11 +32,11 @@ object MovieRanker {
     val top10Tconst = top10Movies.select("tconst").as[String].collect().toSeq
 
     // Read principals and names
-    val titlePrincipals = MovieData.readTitlePrincipals(spark, dataPath, top10Tconst)
-    val nameBasics = MovieData.readNameBasics(spark, dataPath)
+    val titlePrincipals = MovieData.readTitlePrincipals(spark, movieRankerConfigs.titlePrincipalsPath, top10Tconst)
+    val nameBasics = MovieData.readNameBasics(spark, movieRankerConfigs.nameBasicsPath)
 
     // Get top persons
-    val topPersons = Utils.getTopPersons(titlePrincipals, nameBasics, 10)
+    val topPersons = Utils.getTopPersons(titlePrincipals, nameBasics, movieRankerConfigs.numberOfTopPersons)
 
     println("Most Credited Persons in Top 10 Movies:")
     topPersons.show(truncate = false)

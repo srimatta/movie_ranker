@@ -55,5 +55,7 @@ COPY --from=builder /app/target/scala-2.12/movie_ranker-assembly-1.0.jar /app/mo
 # Copy the IMDb data files
 COPY imdb_data /app/imdb_data
 
+COPY application.conf /app/
+
 # Define the default command to run the application
-CMD ["spark-submit", "--class", "com.imdb.MovieRankerMain", "--master", "local[*]", "/app/movie_ranker-assembly-1.0.jar"]
+CMD ["spark-submit", "--class", "com.imdb.MovieRanker", "--master", "local[*]", "/app/movie_ranker-assembly-1.0.jar"]

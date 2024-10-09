@@ -8,7 +8,8 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % "3.5.3",
   "org.apache.spark" %% "spark-sql" % "3.5.3",
   "org.scalatest" %% "scalatest" % "3.2.10" % Test,
-  "org.scalatest" %% "scalatest-funsuite" % "3.2.10" % Test
+  "org.scalatest" %% "scalatest-funsuite" % "3.2.10" % Test,
+  "com.typesafe" % "config" % "1.4.2"
 )
 
 // For sbt-assembly
