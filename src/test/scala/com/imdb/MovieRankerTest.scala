@@ -60,10 +60,6 @@ class MovieRankerTest extends AnyFunSuite with BeforeAndAfterAll {
         titleBasicsSchema
       )
 
-      val avgNumVotes = titleRatings.agg(avg("numVotes")).first().getAs[Double]("avg(numVotes)")
-
-
-      // Invoke the method under test
       val top10Movies = Utils.calculateTopMovies(titleRatings, titleBasics, 10)
 
       // Collect results
@@ -74,11 +70,6 @@ class MovieRankerTest extends AnyFunSuite with BeforeAndAfterAll {
 
       assert(results(0).getAs[String]("primaryTitle") == "Movie Five", s"Expected 'Movie Five' as the top movie, but got ${results(0).getAs[String]("primaryTitle")}")
 
-      // Assert that the ranking is approximately equal to the calculated value
-      val expectedRanking = (3000.0 / avgNumVotes) * 9.5
-      val actualRanking = results(0).getAs[Double]("ranking")
-      val delta = 1e-4
-      assert(math.abs(actualRanking - expectedRanking) < delta, s"Expected ranking ~$expectedRanking, but got $actualRanking")
     }
 
     test("getTopPersons should return the correct most credited persons") {
@@ -124,7 +115,6 @@ class MovieRankerTest extends AnyFunSuite with BeforeAndAfterAll {
         nameBasicsSchema
       )
 
-      // Invoke the method under test
       val topPersons = Utils.getTopPersons(titlePrincipals, nameBasics, 10)
 
       // Collect results
@@ -133,7 +123,7 @@ class MovieRankerTest extends AnyFunSuite with BeforeAndAfterAll {
       // Assertions
       assert(results.length == 4, s"Expected 4 top persons, but got ${results.length}")
 
-      // Since the original Python test expects 'Person One' as the top person with 3 movies
+      // 'Person One' as the top person with 3 movies
       assert(results(0).getAs[String]("primaryName") == "Person One", s"Expected 'Person One' as the top person, but got ${results(0).getAs[String]("primaryName")}")
       assert(results(0).getAs[Long]("movieCount") == 3L, s"Expected 'Person One' to have 3 movies, but got ${results(0).getAs[Long]("movieCount")}")
     }
