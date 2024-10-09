@@ -2,6 +2,8 @@
 
 ### Running in command line:
 
+Building movie ranker jar
+
 > run 'sbt assembly' command which generates target/scala-2.12/movie_ranker-assembly-1.0.jar
 
 Keep application.conf same directory where it's running. below are the default application.conf properties
@@ -25,4 +27,15 @@ Building docker Image
 > docker build -t movie-ranker-app .
 
 > docker run --rm -v "$(pwd)/application_docker.conf:/app/application.conf"  movie-ranker-app
+> 
 
+### Building via SBT in local
+Run application
+> sbt run
+
+Run test cases
+> sbt test
+
+
+### Note: 
+<br> Running Movie ranker application JDK 1.8, SBT, Docker need to be pre-installed.  
