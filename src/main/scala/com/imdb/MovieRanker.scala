@@ -34,6 +34,11 @@ object MovieRanker {
     println("Top-rated Movies:")
     topRatedMovies.show(truncate = false)
 
+    // List different titles of the Top-rated Movies
+    println("Titles of Top Movies:")
+    topRatedMovies.select("primaryTitle").show(truncate = false)
+
+
     // Get tconst list for top-rated movies
     val topRatedMoviesTconst = topRatedMovies.select("tconst").as[String].collect().toSeq
 
@@ -46,10 +51,6 @@ object MovieRanker {
 
     println("Most Credited Persons in Top Rated Movies:")
     topPersons.show(truncate = false)
-
-    // List different titles of the 10 movies
-    println("Titles of Top Movies:")
-    topRatedMovies.select("primaryTitle").show(truncate = false)
 
     // Stop Spark Session
     spark.stop()
